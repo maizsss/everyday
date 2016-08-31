@@ -1,0 +1,13 @@
+CACHE MANIFEST
+        # 2016-06-27:v1.0
+
+        NETWORK:
+        *
+
+        CACHE:
+        ../assets/css/style.single.css
+        ../dist/js/framework.min.js
+        ../dist/index.css
+        ../dist/index.js
+        
+        ../assets/img/error-tip.png

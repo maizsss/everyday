@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- <html manifest="cache/manifest.appcache"> -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>everyday——日程管理</title>
+    <script>
+        window.applicationCache.addEventListener("updateready", function(){
+            window.location.reload()
+        });
+    </script>
+    <link rel="icon" href="assets/everyday_icon.ico"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/everyday_icon.png">
+    <link rel="stylesheet" href="assets/css/style.single.css">
+    <link rel="stylesheet" href="dist/index.css">
+</head>
+<body>
+<div class="statusbar-overlay"></div>
+<div class="views">
+    <div class="view view-main">
+        <div class="pages" id="index"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="dist/js/framework.min.js"></script>
+<script type="text/javascript" src="dist/index.js"></script>
+
+</body>
+</html>
