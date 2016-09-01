@@ -9,7 +9,7 @@
 		</a>
 		<ul 
 			class="schedule-list"
-			v-if="schedule_list.length != 0"
+			v-if="schedule_list.length != 0 && user.is_login"
 			v-for="(index, val) in schedule_list"
 			track-by="$index">
 			<li class="schedule-item">
@@ -62,6 +62,9 @@
 			}
 		},
 		computed: {
+			user() {
+				return store.state.everyday_init.user;
+			},
 			schedule_list() {
 				return store.state.everyday_init.schedule.list;
 			}

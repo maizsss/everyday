@@ -14,11 +14,12 @@ export const InitState = {
         init: 'api/everyday/init', //params: account(用户帐号), date(日期，如：'2016-8-30')
         edit: 'api/everyday/edit', //params: account(用户帐号), id(日程的id), sketch(日程的简述), describe(日程的详情)
         sort: 'api/everyday/sort', //params: account(用户帐号), id(日程的id), type(1: 优先， 2：延后， 3：完成)
-        login: 'api/everyday/login', //params: account(用户帐号), password(密码)
+        user: 'api/everyday/user', //params: account(用户帐号), password(密码), type(login/logout/sign)
     },
     user: {
         user_nickname: '',
-        account: 10000
+        account: 10000,
+        is_login: 0
     },
     schedule: {
         list: [
@@ -52,19 +53,24 @@ export const InitState = {
 export const Mutations = {
     
     [INIT_USER_INFO] (state, data) {
+        if (data.hasOwnProperty('user')){ 
+            state.everyday_init.user.account = data.user.account
+            state.everyday_init.user.user_nickname = data.user.user_nickname
+            state.everyday_init.user.is_login = data.user.is_login
+        }
+
+    },
+
+    [UPDATE_SCHEDULE] (state, data){
         if (data.hasOwnProperty('user')){
             state.everyday_init.user.account = data.user.account
             state.everyday_init.user.user_nickname = data.user.user_nickname
+            state.everyday_init.user.is_login = data.user.is_login
         }
-
         if (data.hasOwnProperty('schedule')){
             state.everyday_init.schedule.list = data.schedule.list
             state.everyday_init.schedule.total = data.schedule.total
             state.everyday_init.schedule.date = data.schedule.date
         }
-    },
-
-    [UPDATE_SCHEDULE] (state, data) {
-        
-    },
+    }
 }

@@ -15,7 +15,8 @@
 			</template>
 			<!-- 点击下方的"+"按钮添加新事务吧 -->
 		</p>
-		<comp-schedule></comp-schedule>
+		<comp-schedule
+			></comp-schedule>
 
 
 	</div>

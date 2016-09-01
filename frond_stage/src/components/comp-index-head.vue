@@ -7,7 +7,7 @@
 					href="#"
 					class="forward-btn active"
 					@click="login">
-					登录
+					{{user.is_login ? '注销' : '登录'}}
 				</a>
 			</div>
 			<div class="center">
@@ -77,12 +77,37 @@
 				this.setDate(year, month, day);   
 			},
 			login() {
-				myApp.modalLogin('请输入您的帐号与密码', function (username, password) {
-			        store.actions.login({  
-			    		account: username,
-			    		password: password
-			    	});
-			    });
+				let vue_this = this;
+				if (this.user.is_login){
+					myApp.modal({
+						title:  '提示',
+						text: '确定要注销吗？',
+						buttons: [
+							{
+								text: '取消',
+								close: true
+							},
+							{
+								text: '确定',
+								onClick: function() {
+									store.actions.user({  
+							    		account: vue_this.user.account,
+							    		type: 'logout'
+							    	});
+								}
+							}
+						]
+					});
+				} else {
+					myApp.modalLogin('请输入您的帐号与密码', function (account, password) {
+				        store.actions.user({  
+				    		account: account,
+				    		password: password,
+				    		type: 'login'
+				    	});
+				    });
+				}
+				
 			}
 		},
 		components: {

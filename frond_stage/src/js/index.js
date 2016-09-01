@@ -24,8 +24,9 @@ $$(document).on('pageInit', function (e) {
     console.log(page.name);
    
     if (page.name === 'index-page') {
-        let indexPage = new Vue(index_page);
-        indexPage.$mount('#index-page');
+        // let indexPage = new Vue(index_page);
+        // indexPage.$mount('#index-page');
+        
     }
 
     if (page.name === 'about-page') {
