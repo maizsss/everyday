@@ -25,7 +25,7 @@
 
 <script>
 	import store from '../store/index';
-	import { stopDoubleClick } from '../api/computed.js';
+	import { stopDoubleClick, getCookie } from '../api/computed.js';
 	import comp_schedule from './comp-schedule.vue';
 	import comp_index_head from './comp-index-head.vue';
 
@@ -40,6 +40,9 @@
 		computed: {
 			user() {
 				return store.state.everyday_init.user;
+			},
+			store() {
+				return store.state.everyday_init;
 			}
 		},
 		methods: {
@@ -49,7 +52,10 @@
 			'comp-index-head': comp_index_head
 		},
 		ready() {
-			store.actions.init();
+			let account = getCookie('account');
+			store.actions.init({
+				account: account
+			});
 		}
 	}
 </script>

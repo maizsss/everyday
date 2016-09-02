@@ -12,7 +12,7 @@ export const InitState = {
     //接口
     request:{
         init: 'api/everyday/init', //params: account(用户帐号), date(日期，如：'2016-8-30')
-        edit: 'api/everyday/edit', //params: account(用户帐号), id(日程的id), sketch(日程的简述), describe(日程的详情)
+        schedule: 'api/everyday/schedule', //params: account(用户帐号), type(edit/delete/add), id(日程的id), sketch(日程的简述), describe(日程的详情)
         sort: 'api/everyday/sort', //params: account(用户帐号), id(日程的id), type(1: 优先， 2：延后， 3：完成)
         user: 'api/everyday/user', //params: account(用户帐号), password(密码), type(login/logout/sign)
     },
@@ -43,7 +43,7 @@ export const InitState = {
             // },
         ],
         total: 0,
-        date: ''
+        date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-'  + new Date().getDate()
     }
    
 }

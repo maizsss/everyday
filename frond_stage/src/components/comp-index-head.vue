@@ -6,9 +6,26 @@
 				<a
 					href="#"
 					class="forward-btn active"
-					@click="login">
-					{{user.is_login ? '注销' : '登录'}}
+					v-if="user.is_login"
+					@click="logout">
+					注销
 				</a>
+				<div
+					class="sm-btn-wrap"
+					v-if="!user.is_login">
+					<a
+						href="#"
+						class="sm-btn login-btn"
+						@click="login">
+						登陆
+					</a>
+					<a
+						href="#"
+						class="sm-btn sign-btn"
+						@click="toSignPage">
+						| 注册
+					</a>
+				</div>
 			</div>
 			<div class="center">
 				<span class="page-title"> 
@@ -20,7 +37,7 @@
 					href="#"
 					class="end-btn active">
 					<p class="main-text">选择日期</p>
-					<p class="sub-text">{{today_format}}</p>
+					<p class="sub-text">{{select_day_format}}</p>
 					<input type="text" id="calendar-multiple" readonly value="12321" />
 				</a>
 			</div>
@@ -31,7 +48,7 @@
 
 <script>
 	import store from '../store/index';
-	import { stopDoubleClick } from '../api/computed.js';
+	import { stopDoubleClick, verification } from '../api/computed.js';
 
 	export default {
 		name: 'comp-index-head',
@@ -39,7 +56,9 @@
 		data() {
 			return {
 				img_path:'assets/img/',
-				today_format: ''
+				today_format: '',
+				select_day_format: '',
+				calendarInline: null
 			}
 		},
 		computed: {
@@ -50,23 +69,31 @@
 		methods: {
 			setDate(year, month, day) {
 				
-				this.today_format = year + '-' + month + '-' + day;
+				this.select_day_format = year + '-' + month + '-' + day;
+			},
+			openDateSelect() {
+				this.calendarInline.open();
 			},
 			dateSelect() {
 				let vue_this = this;
 				let $$ = Dom7;
-				let calendarInline = myApp.calendar({
-					input: "#calendar-multiple",
+				vue_this.calendarInline = myApp.calendar({
+					input: '#calendar-multiple',
 					value: [new Date()],
 					dateFormat: 'DD, MM dd, yyyy',
 				    dayNamesShort: ['日', '一', '二', '三', '四', '五', '六'],
 				    monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
 				    onDayClick(p, dayContainer, year, month, day) {
+				    	if (!vue_this.user.is_login){
+				    		myApp.alert('请先登录');
+				    		
+				    	}
 				    	vue_this.setDate(year, month*1+1, day);   
 				    },
 				    onClose() {
+				    	if (!vue_this.user.is_login) return;
 				    	store.actions.init({
-				    		date: vue_this.today_format
+				    		date: vue_this.select_day_format
 				    	});
 				    }
 				}); 
@@ -74,40 +101,47 @@
 				let year = date.getFullYear();
 				let month = date.getMonth() + 1;
 				let day = date.getDate();
-				this.setDate(year, month, day);   
+				this.today_format = year + '-' + month + '-' + day; 
+				this.select_day_format = year + '-' + month + '-' + day;
 			},
 			login() {
 				let vue_this = this;
-				if (this.user.is_login){
-					myApp.modal({
-						title:  '提示',
-						text: '确定要注销吗？',
-						buttons: [
-							{
-								text: '取消',
-								close: true
-							},
-							{
-								text: '确定',
-								onClick: function() {
-									store.actions.user({  
-							    		account: vue_this.user.account,
-							    		type: 'logout'
-							    	});
-								}
-							}
-						]
-					});
-				} else {
-					myApp.modalLogin('请输入您的帐号与密码', function (account, password) {
-				        store.actions.user({  
-				    		account: account,
-				    		password: password,
-				    		type: 'login'
-				    	});
-				    });
-				}
 				
+				myApp.modalLogin('请输入您的帐号与密码', function (account, password) {
+			        store.actions.user({  
+			    		account: account,
+			    		password: password,
+			    		type: 'login'
+			    	});
+			    });
+			},
+			logout() {
+				let vue_this = this;
+				myApp.modal({
+					title:  '提示',
+					text: '确定要注销吗？',
+					buttons: [
+						{
+							text: '取消',
+							close: true
+						},
+						{
+							text: '确定',
+							onClick: function() {
+								store.actions.user({  
+						    		account: vue_this.user.account,
+						    		type: 'logout'
+						    	});
+							}
+						}
+					]
+				});
+			},
+			toSignPage() {
+				if (!stopDoubleClick(this, 500)){
+	                return;
+	            }
+	            myApp.redictNewPage('sign-page', true, true);
 			}
 		},
 		components: {
@@ -148,15 +182,23 @@
 			}
 		}
 		.forward-btn {
-			border-right: solid 1px #c4c4c4;
+			// border-right: solid 1px #c4c4c4;
 			color: #acacac;
 			padding: 0;
 			&.active {
 				color: @color-Eblue1;
 			}
 		}
+		.sm-btn-wrap {
+			padding-left: 5px;
+		}
+		.left .sm-btn {
+			width: 36px;
+			margin: 0;
+			padding: 0;
+		}
 		.end-btn {
-			border-left: solid 1px #c4c4c4; 
+			// border-left: solid 1px #c4c4c4; 
 			position: relative;
 			padding: 0;
 			.main-text {

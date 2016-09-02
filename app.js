@@ -4,11 +4,6 @@ var session = require('express-session');
 var cookieParser = require('cookie-parser');
 var app = express();
 
-/* 404处理 */
-app.use(function (req, res, next){
-	res.status(404).send('404:很抱歉，你所访问的资源不存在');
-});
-
 var mongoose = require('mongoose');
 var pwd = __dirname;
 
@@ -19,7 +14,7 @@ var port = 3030;
 var routers = require('./server/apis/index.js');
 
 global.db = mongoose.connect("mongodb://localhost:27017/everyday");
-global.db_handel = require('./server/db/db_handel.js');
+global.db_handel = require('./server/db/db_handel.js'); 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -33,7 +28,6 @@ app.use(session({
 
 // 前台静态资源
 app.use('/front', express.static(pwd + '/frond_stage/'));
-
 
 // 前台页面
 app.get('/', function(req, res, next) { 

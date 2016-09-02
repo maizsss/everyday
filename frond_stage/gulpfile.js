@@ -16,7 +16,7 @@ var minifycss = require('gulp-minify-css');
     framework = {
         filename: 'framework',
         jsFiles: [
-            '../lib/build/js/framework.js',
+            '../../lib/build/js/framework.js',
         ]
     };
 

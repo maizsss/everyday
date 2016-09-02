@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import index_page from "../components/index-page.vue";
 import about_page from "../components/about-page.vue";
 import schedule_edit_page from "../components/schedule-edit-page.vue";
+import sign_page from "../components/sign-page.vue";
 
 import bottom_toolbar from "../components/bottom-toolbar.vue";
 
@@ -38,6 +39,12 @@ $$(document).on('pageInit', function (e) {
     if (page.name === 'schedule-edit-page') {
         let scheduleEditPage = new Vue(schedule_edit_page);
         scheduleEditPage.$mount('#schedule-edit-page');
+        
+    }
+
+    if (page.name === 'sign-page') {
+        let signPage = new Vue(sign_page);
+        signPage.$mount('#sign-page');
         
     }
 
