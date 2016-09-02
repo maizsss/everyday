@@ -193,7 +193,11 @@
 			padding-left: 5px;
 		}
 		.left .sm-btn {
+<<<<<<< HEAD
 			width: 36px;
+=======
+			width: 35px;
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 			margin: 0;
 			padding: 0;
 		}

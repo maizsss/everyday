@@ -5,6 +5,12 @@ module.exports = function(Router) {
     Router.get('/init', function (req, res, next) {
         var User = global.db_handel.getModel('user');
         var Schedule = global.db_handel.getModel('schedule');
+<<<<<<< HEAD
+=======
+        // User.create({
+
+        // });
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 
         var schedule_list = [
             // {
@@ -50,7 +56,11 @@ module.exports = function(Router) {
                         })
                         .sort({'sort_index': -1})
                         .exec(function(err, list) {
+<<<<<<< HEAD
                             
+=======
+                            console.log(list);
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
                             if (list.length != 0){
                                 schedule_list = list;
                             }

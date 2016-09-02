@@ -102,7 +102,10 @@
 					type = 'edit';
 				}
 				store.actions.schedule({
+<<<<<<< HEAD
 					id: this.schedule_item.id,
+=======
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 					type: type,
 					sketch: sketch,
 					describe: describe

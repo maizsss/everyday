@@ -27,7 +27,12 @@
 					
 				</span>
 				<div 
+<<<<<<< HEAD
 					class="text-wrap">
+=======
+					class="text-wrap"
+					@click="toScheduleEdit('edit', val.id)">
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 					<p class="main-text">
 						{{val.sketch}}
 					</p>
@@ -38,16 +43,27 @@
 				<div class="btn-wrap">
 					<a 
 						href="#"
+<<<<<<< HEAD
 						class="button to-change-state"
 						@click="changeState(val)">
 						状态
 						<!-- <input type="text" id="change-state" value='' readonly> -->
+=======
+						class="button to-first"
+						@click="toFirst">
+						优先
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 					</a>
 					<a 
 						href="#"
 						class="button to-complete"
+<<<<<<< HEAD
 						@click="toScheduleEdit('edit', val.id)">
 						编辑
+=======
+						@click="toComplete">
+						完成
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 					</a>
 				</div>
 			</li>
@@ -93,6 +109,7 @@
 
 				myApp.redictNewPage('schedule-edit-page', true, true);
 			},
+<<<<<<< HEAD
 			changeState(val) {
 				let vue_this = this;
 				this.select_schedule = val;
@@ -159,6 +176,13 @@
 						}
 					]
 				});
+=======
+			toFirst() {
+
+			},
+			toComplete() {
+
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 			}
 		},
 		components: {

@@ -90,6 +90,7 @@ export const verification = (type ,str) => {
 		return false;
 	}
 };
+<<<<<<< HEAD
 
 export const getCookie = (name) => {
 
@@ -100,3 +101,5 @@ export const getCookie = (name) => {
 		return null;
 	}
 }
+=======
+>>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
