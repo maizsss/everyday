@@ -64,3 +64,29 @@ export const filterSchedule = (value, id) => {
 	}
 	return tmp_obj;
 }
+
+export const verification = (type ,str) => {
+	let typeRegx = {
+		name: /^[\u2E80-\uFE4F]{2,4}$/,
+		identification_card: /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/,
+		card_no: /^(\d{12,19})$/,
+		bank_name: /^[\u2E80-\uFE4F]{3,10}$/,
+		mobile:  /^([0-9]{11})?$/,
+		card_no_input: /^\d+$/,
+		team_name: /^([\u2E80-\uFE4F]|\d|[A-Za-z]){2,6}$/,
+		tid: /^((\d|[A-Za-z]){5,15})$/,
+		nick_name: /^(.{1,20})$/,
+		qid: /^(\d{5,11})$/,
+		tel: /^(\d{8,11})$/,
+		account: /^(\d{5,9})$/,
+		user_nickname: /^(.{2,9})$/,
+		password: /^(.{6,11})$/
+	};
+	let regx = typeRegx[type];
+
+	if (regx.test(str)){
+		return true;
+	} else {
+		return false;
+	}
+};

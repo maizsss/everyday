@@ -5,7 +5,7 @@ import * as types from './mutation-types.js'
 //obj = {
 //  account: 0, //用户帐号
 //}
-export const user = ({ dispatch, state }, obj) => {
+export const user = ({ dispatch, state }, obj, cb) => {
     if (!obj){
         obj = {}
     }
@@ -17,6 +17,7 @@ export const user = ({ dispatch, state }, obj) => {
             
             dispatch(types.INIT_USER_INFO, data.data) //更新基本信息
             obj.type == 'login' && init({ dispatch, state })
+            cb && cb()
         })
     }, 350) 
 }
@@ -32,7 +33,7 @@ export const init = ({ dispatch, state }, obj) => {
     }
 
     obj.account = obj.account ? obj.account : state.everyday_init.user.account 
-    obj.date = obj.date ? obj.date : new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-'  + new Date().getDate()
+    obj.date = obj.date ? obj.date : state.everyday_init.schedule.date
 
     setTimeout(() => {
         myApp.requestApi(state.everyday_init.request.init, obj, function(data){
@@ -45,6 +46,30 @@ export const init = ({ dispatch, state }, obj) => {
         //     }
         // }
         )
+    }, 350) 
+}
+
+//日程操作
+//请求参数说明
+//obj = {
+//  account: 0, //用户帐号
+//  date: '', //日期，如：'2016-8-30'
+//}
+export const schedule = ({ dispatch, state }, obj, cb) => {
+    if (!obj){
+        obj = {}
+    }
+
+    obj.account = obj.account ? obj.account : state.everyday_init.user.account 
+    obj.date = obj.date ? obj.date : state.everyday_init.schedule.date
+
+    setTimeout(() => {
+        myApp.requestApi(state.everyday_init.request.schedule, obj, function(data){
+            
+            // dispatch(types.UPDATE_SCHEDULE, data.data) //更新基本信息
+            init({ dispatch, state })
+            cb && cb()
+        })
     }, 350) 
 }
 
@@ -74,7 +99,7 @@ myApp.requestApi = function (url, parameter, success, Indicator, failure){
         host = 'http://114.112.156.223:3030/';
     }
     else {
-        host = 'http://192.168.1.104:3030/';
+        host = 'http://192.168.8.50:3030/';
     }
     url = url.indexOf('http://') != -1 ? url : host + url;
     //菊花是否静默

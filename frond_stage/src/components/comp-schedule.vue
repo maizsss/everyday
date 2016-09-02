@@ -14,9 +14,21 @@
 			track-by="$index">
 			<li class="schedule-item">
 				<span class="item-number">
-					{{index + 1}}.
+					
+					<template
+						v-if="val.sort_index == 0">
+						(OK)
+					</template>
+
+					<template
+						v-if="val.sort_index > 0">
+						
+					</template>
+					
 				</span>
-				<div class="text-wrap">
+				<div 
+					class="text-wrap"
+					@click="toScheduleEdit('edit', val.id)">
 					<p class="main-text">
 						{{val.sketch}}
 					</p>
@@ -27,14 +39,15 @@
 				<div class="btn-wrap">
 					<a 
 						href="#"
-						class="button to-first">
+						class="button to-first"
+						@click="toFirst">
 						优先
 					</a>
 					<a 
 						href="#"
-						class="button to-edit"
-						@click="toScheduleEdit('edit', val.id)">
-						编辑
+						class="button to-complete"
+						@click="toComplete">
+						完成
 					</a>
 				</div>
 			</li>
@@ -77,6 +90,12 @@
 	            type == 'new' ? window.schedule_item_id = 0 : window.schedule_item_id = id;
 
 				myApp.redictNewPage('schedule-edit-page', true, true);
+			},
+			toFirst() {
+
+			},
+			toComplete() {
+
 			}
 		},
 		components: {
@@ -147,7 +166,8 @@
 					}
 				}
 				.item-number {
-					font-size: 16px;
+					font-size: 12px;
+					line-height: 20px;
 					color: #acacac;
 				}
 			}

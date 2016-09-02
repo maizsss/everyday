@@ -39,7 +39,7 @@
 							<div class="item-input">
 								<input 
 									type="text" 
-									name="name" 
+									name="sketch-text" 
 									placeholder="填写该事务的简要描述" 
 									value="{{schedule_item.sketch}}">
 							</div>
@@ -51,7 +51,7 @@
 						<div class="item-inner">
 							<div class="item-title label">详情</div>
 							<div class="item-input">
-								<textarea>{{schedule_item.describe}}</textarea>
+								<textarea id="describe-text">{{schedule_item.describe}}</textarea>
 							</div>
 						</div>
 					</div>
@@ -93,7 +93,22 @@
 		},
 		methods: {
 			scheduleSubmit() {
-				this.toBack();
+				let type = '';
+				let sketch = $$('input[name=sketch-text]').val();
+				let describe = $$('#describe-text').val();
+				if (this.schedule_item.sketch == ''){
+					type = 'add';
+				} else {
+					type = 'edit';
+				}
+				store.actions.schedule({
+					type: type,
+					sketch: sketch,
+					describe: describe
+				}, () => {
+					this.toBack();
+				});
+				
 			},
 			toBack() {
 				if (!stopDoubleClick(this, 500)){

@@ -4,7 +4,7 @@
   "description": "everyday",
   "main": "index.js",
   "scripts": {
-    "debug": "webpack-dev-server --inline --host 192.168.1.104 --port 1111 --hot --config build/webpack.debug.config.js",
+    "debug": "webpack-dev-server --inline --host 192.168.8.50 --port 1111 --hot --config build/webpack.debug.config.js",
     "dev": "webpack-dev-server --inline --port 6060 --hot --config build/webpack.dev.config.js",
     "build": "webpack --progress --hide-modules --config build/webpack.prod.config.js",
     "libCss": "gulp minifycss"

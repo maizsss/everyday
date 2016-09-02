@@ -40,6 +40,9 @@
 		computed: {
 			user() {
 				return store.state.everyday_init.user;
+			},
+			store() {
+				return store.state.everyday_init;
 			}
 		},
 		methods: {
