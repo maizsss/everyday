@@ -99,7 +99,7 @@ myApp.requestApi = function (url, parameter, success, Indicator, failure){
         host = 'http://114.112.156.223:3030/';
     }
     else {
-        host = 'http://192.168.8.50:3030/';
+        host = 'http://localhost:3030/';
     }
     url = url.indexOf('http://') != -1 ? url : host + url;
     //菊花是否静默

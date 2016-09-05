@@ -60,11 +60,7 @@
 				<li>
 					<div class="item-content">
 						<div class="item-inner">
-<<<<<<< HEAD
 							<div class="item-title label">密码</div>
-=======
-							<div class="item-title label">重复密码</div>
->>>>>>> 4d334838ba51245275cb7cadc1d574a6ec15ab70
 							<div class="item-input">
 								<input type="password" name="sign-password2" placeholder="请重复填写密码" class="modal-text-input">
 							</div>
