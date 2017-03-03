@@ -95,8 +95,8 @@ myApp.requestApi = function (url, parameter, success, Indicator, failure){
 
     //接口匹配环境
     var host;
-    if(urlString.indexOf('114.112.156.223') != -1){
-        host = 'http://114.112.156.223:3030/';
+    if(urlString.indexOf('104.194.91.164') != -1){
+        host = 'http://104.194.91.164:3030/';
     }
     else {
         host = 'http://localhost:3030/';

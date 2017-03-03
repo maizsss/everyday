@@ -23,6 +23,7 @@ module.exports = function(Router) {
                     "msg": "尚未登录",  
                     "code": -4
                 });
+                return;
             }
 
             User.find({account: req.query.account}).exec(function(err, docs) {
