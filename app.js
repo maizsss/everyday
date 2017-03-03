@@ -13,8 +13,10 @@ var port = 3030;
 
 var routers = require('./server/apis/index.js');
 
-global.db = mongoose.connect("mongodb://localhost:27017/everyday");
-global.db_handel = require('./server/db/db_handel.js'); 
+global.db = mongoose.connect("mongodb://127.0.0.1:27017/everyday");
+global.db_handel = require('./server/db/db_handel.js');  
+
+mongoose.Promise = global.Promise; 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

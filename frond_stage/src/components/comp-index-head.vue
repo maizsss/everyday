@@ -222,6 +222,7 @@
 			position: absolute;
 			top: 0;
 			left: 0;
+			border: none;
 		}
 		.page-title {
 			font-size: 16px;

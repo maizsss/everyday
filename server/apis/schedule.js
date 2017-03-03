@@ -147,7 +147,7 @@ var scheduleFirst = function (req, res, next){
                 })
                 .sort({'sort_index': -1})
                 .exec(function (err, schedule2){
-                    console.log(schedule2);
+                    
                     Schedule
                         .findByIdAndUpdate({
                             _id: schedule[0]._id
